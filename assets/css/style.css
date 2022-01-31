@@ -1,0 +1,25 @@
+
+#banner {
+    background-color: #577399;
+    color: white;
+    width: 100%
+    text-align: center
+}
+input[type=text],select {
+    margin-bottom: 10px;
+    width: 75%;
+    border: 3px solid #83BCFF;
+    border-radius: 4px;
+}
+
+input[type=submit] {
+    background-color: #83BCFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+
+
+}
+#cityResult {
+    border: 1px solid red
+}
