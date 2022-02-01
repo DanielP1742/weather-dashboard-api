@@ -9,7 +9,12 @@
 
 // Get an active button that actually works -done
 // Get the form value to be captured -done
-// Get the API on the button press
+// Get the API on the button press -done
+// current API data to "imperial" messsurements -done
+
+//To Do:
+//Figure out how to get the desired info about of the array
+//then figure out how to append that to somewhere
 
 
 // City Searches cause city specific information populate Search results area
@@ -28,14 +33,15 @@ var citySearch = function(event) {
     var enteredCity = inputCity.value
     console.log(enteredCity);
 
-    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + enteredCity + "&appid=27b3d2272a78678ccc982ddeb1ff31a9").then(function(response) {
+    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + enteredCity + "&units=imperial&appid=27b3d2272a78678ccc982ddeb1ff31a9").then(function(response) {
         response.json().then(function(data) {
             console.log(data)
         });
     })
-  
-        
+    
+      
 }
+
 
 
 submitbutton.addEventListener("click", citySearch);
