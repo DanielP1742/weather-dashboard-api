@@ -7,15 +7,14 @@ var forecastCardTwoEl = document.querySelector("#card-2")
 var forecastCardThreeEl = document.querySelector("#card-3")
 var forecastCardFourEl = document.querySelector("#card-4")
 var forecastCardFiveEl = document.querySelector("#card-5")
+var savedCityDivEl = document.querySelector("#localStoreage")
 
 
-var currentCityWeather = function (event) {
-    event.preventDefault();
-    var enteredCity = inputCity.value
-
+var currentCityWeather = function (enteredCity) {
+   
     //Inital population of data for Current City Weather
 
-    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + enteredCity + "&units=imperial&appid=27b3d2272a78678ccc982ddeb1ff31a9").then(function (response) {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${enteredCity}&units=imperial&appid=27b3d2272a78678ccc982ddeb1ff31a9`).then(function (response) {
         response.json().then(function (data) {
             var cityNameEl = document.createElement("h2");
             var weatherMainEl = document.createElement("p");
@@ -23,13 +22,11 @@ var currentCityWeather = function (event) {
             var humidityEl = document.createElement("p");
             var windSpeedEl = document.createElement("p");
 
-            // template literals 
-            // string = `literal string and ${VARIABLE}`
             console.log(data)
 
             var cityName = data.name;
             var weatherIcon = data.weather[0].icon
-            var iconLink = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
+            var iconLink = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`
             var weatherMain = data.weather[0].main
             var mainTemp = data.main.temp
             var humidity = data.main.humidity
@@ -43,6 +40,8 @@ var currentCityWeather = function (event) {
 
             var iconEl = document.createElement('img');
             iconEl.src = iconLink;
+
+            currentCityWeatherEl.innerHTML = ""
 
             currentCityWeatherEl.append(cityNameEl);
             currentCityWeatherEl.append(iconEl);
@@ -61,8 +60,7 @@ var currentCityWeather = function (event) {
 
 
 
-var fiveDayForecast = function () {
-    var enteredCity = inputCity.value
+var fiveDayForecast = function (enteredCity) {
     fetch("http://api.openweathermap.org/data/2.5/weather?q=" + enteredCity + "&units=imperial&appid=27b3d2272a78678ccc982ddeb1ff31a9")
         .then(
             function (response) {
@@ -243,27 +241,57 @@ var fiveDayForecast = function () {
 
 };
 
-submitbutton.addEventListener("click", currentCityWeather);
-submitbutton.addEventListener("click", fiveDayForecast);
+var storedCity = function(event){
+    var enteredCity = inputCity.value
+    var newCityDivEl = document.createElement("button");
+    newCityDivEl.className = "newCityCreated"
+
+    newCityDivEl.textContent = enteredCity;
+
+    savedCityDivEl.append(newCityDivEl)
+    newCityDivEl.addEventListener("click", newCityformsubmit)
+
+    var cityArray = JSON.parse(localStorage.getItem('searchedhistory'))
+    cityArray.push(enteredCity)
+
+    localStorage.setItem("searchedhistory", JSON.stringify(cityArray));
 
 
 
+}
+
+var formsubmit = function(event) {
+    var enteredCity = inputCity.value
+    currentCityWeather(enteredCity)
+    fiveDayForecast(enteredCity)
+    storedCity(event)
+}
+var newCityformsubmit = function(event) {
+    var enteredCity = this.textContent;
+    currentCityWeather(enteredCity)
+    fiveDayForecast(enteredCity)
+}
+
+submitbutton.addEventListener("click", formsubmit);
 
 
 
-//OpenWeather API Key:
-// 27b3d2272a78678ccc982ddeb1ff31a9
+if(localStorage.getItem("searchedhistory") === null) { 
+
+    localStorage.setItem("searchedhistory", JSON.stringify([]));
 
 
 
-//Pseudo Coding this project out:
+} else {
+var cityArray = JSON.parse(localStorage.getItem('searchedhistory'))
 
-// 3 toppest level things that need to happen:
+for (var i = 0; i < cityArray.length; i++) {
 
+var newCityDivEl = document.createElement("button");
+newCityDivEl.className = "newCityCreated"
+newCityDivEl.textContent = cityArray[i];
+savedCityDivEl.append(newCityDivEl)
 
-//To Do:
-//Figure out how to get the desired info about of the array
+newCityDivEl.addEventListener("click", newCityformsubmit)
 
-// City Searches cause 5 day forcast to populate
-
-// City searches are saved in local storage and append divs 
+}}
