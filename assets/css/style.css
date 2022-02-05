@@ -20,5 +20,29 @@ input[type=submit] {
 
 }
 #cityResult {
-    border: 1px solid red
+    border: 1px solid #577399
+}
+
+#card-1 {
+    background-color: lightgray;
+}
+
+#card-2 { 
+    background-color: lightgray;
+
+}
+
+#card-3 { 
+    background-color: lightgray;
+
+}
+
+#card-4 {
+    background-color: lightgray;
+
+}
+
+#card-5 {
+    background-color: lightgray;
+
 }
