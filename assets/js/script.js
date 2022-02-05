@@ -51,6 +51,8 @@ var currentCityWeather = function (event) {
             currentCityWeatherEl.append(humidityEl);
             currentCityWeatherEl.append(windSpeedEl);
 
+           
+
 
         })
     })
@@ -90,7 +92,7 @@ var fiveDayForecast = function () {
                                             var cardOneWindEl = document.createElement("p");
                                             var cardOneHumidityEl = document.createElement("p");
 
-                                            var cardOneDate = moment().calendar();                   
+                                            var cardOneDate = moment().add(1, "day").format('l');                    
                                             var weatherIconCardOne = data.daily[0].weather[0].icon
                                             var cardOneWeatherIcon =  "https://openweathermap.org/img/wn/" + weatherIconCardOne + "@2x.png"
                                             var cardOneTemp = data.daily[0].feels_like.day
@@ -102,7 +104,7 @@ var fiveDayForecast = function () {
                                             cardOneIconEl.src = cardOneWeatherIcon
                                             cardOneTempEl.textContent = "Temp: " + cardOneTemp
                                             cardOneWindEl.textContent = "Wind: " + cardOneWind
-                                            cardOneHumidityEl.textContent = "Humitiy: " + cardOneHumidity + "%"
+                                            cardOneHumidityEl.textContent = "Humidity: " + cardOneHumidity + "%"
 
                                             forecastCardOneEl.append(cardOneDateEl);
                                             forecastCardOneEl.append(cardOneIconEl);
@@ -118,7 +120,7 @@ var fiveDayForecast = function () {
                                             var cardTwoWindEl = document.createElement("p");
                                             var cardTwoHumidityEl = document.createElement("p");
 
-                                            var cardTwoDate = moment().subtract(1,'day').calendar();                      
+                                            var cardTwoDate = moment().add(2,'day').format('l');                 
                                             var weatherIconCardTwo = data.daily[1].weather[0].icon
                                             var cardTwoWeatherIcon =  "https://openweathermap.org/img/wn/" + weatherIconCardTwo + "@2x.png"
                                             var cardTwoTemp = data.daily[1].feels_like.day
@@ -130,7 +132,7 @@ var fiveDayForecast = function () {
                                             cardTwoIconEl.src = cardTwoWeatherIcon
                                             cardTwoTempEl.textContent = "Temp: " + cardTwoTemp
                                             cardTwoWindEl.textContent = "Wind: " + cardTwoWind
-                                            cardTwoHumidityEl.textContent = "Humitiy: " + cardTwoHumidity + "%"
+                                            cardTwoHumidityEl.textContent = "Humidity: " + cardTwoHumidity + "%"
 
                                             forecastCardTwoEl.append(cardTwoDateEl);
                                             forecastCardTwoEl.append(cardTwoIconEl);
@@ -140,10 +142,89 @@ var fiveDayForecast = function () {
 
                                             //Card 3 
 
+                                            var cardThreeDateEl = document.createElement("p");
+                                            var cardThreeIconEl = document.createElement("img")
+                                            var cardThreeTempEl = document.createElement("p");
+                                            var cardThreeWindEl = document.createElement("p");
+                                            var cardThreeHumidityEl = document.createElement("p");
 
-
+                                            var cardThreeDate = moment().add(3,'day').format('l');                      
+                                            var weatherIconCardThree = data.daily[2].weather[0].icon
+                                            var cardThreeWeatherIcon =  "https://openweathermap.org/img/wn/" + weatherIconCardThree + "@2x.png"
+                                            var cardThreeTemp = data.daily[2].feels_like.day
+                                            var cardThreeWind = data.daily[2].wind_speed
+                                            var cardThreeHumidity = data.daily[2].humidity
 
                                             
+                                            cardThreeDateEl.textContent = cardThreeDate
+                                            cardThreeIconEl.src = cardThreeWeatherIcon
+                                            cardThreeTempEl.textContent = "Temp: " + cardThreeTemp
+                                            cardThreeWindEl.textContent = "Wind: " + cardThreeWind
+                                            cardThreeHumidityEl.textContent = "Humidity: " + cardThreeHumidity + "%"
+
+                                            forecastCardThreeEl.append(cardThreeDateEl);
+                                            forecastCardThreeEl.append(cardThreeIconEl);
+                                            forecastCardThreeEl.append(cardThreeTempEl);
+                                            forecastCardThreeEl.append(cardThreeWindEl);
+                                            forecastCardThreeEl.append(cardThreeHumidityEl)
+
+                                            //Card 4
+
+                                            var cardFourDateEl = document.createElement("p");
+                                            var cardFourIconEl = document.createElement("img")
+                                            var cardFourTempEl = document.createElement("p");
+                                            var cardFourWindEl = document.createElement("p");
+                                            var cardFourHumidityEl = document.createElement("p");
+
+                                            var cardFourDate = moment().add(4,'day').format('l');                      
+                                            var weatherIconCardFour = data.daily[3].weather[0].icon
+                                            var cardFourWeatherIcon =  "https://openweathermap.org/img/wn/" + weatherIconCardFour + "@2x.png"
+                                            var cardFourTemp = data.daily[3].feels_like.day
+                                            var cardFourWind = data.daily[3].wind_speed
+                                            var cardFourHumidity = data.daily[3].humidity
+
+                                            
+                                            cardFourDateEl.textContent = cardFourDate
+                                            cardFourIconEl.src = cardFourWeatherIcon
+                                            cardFourTempEl.textContent = "Temp: " + cardFourTemp
+                                            cardFourWindEl.textContent = "Wind: " + cardFourWind
+                                            cardFourHumidityEl.textContent = "Humidity: " + cardFourHumidity + "%"
+
+                                            forecastCardFourEl.append(cardFourDateEl);
+                                            forecastCardFourEl.append(cardFourIconEl);
+                                            forecastCardFourEl.append(cardFourTempEl);
+                                            forecastCardFourEl.append(cardFourWindEl);
+                                            forecastCardFourEl.append(cardFourHumidityEl)
+
+
+                                            // Card 5
+
+                                            var cardFiveDateEl = document.createElement("p");
+                                            var cardFiveIconEl = document.createElement("img")
+                                            var cardFiveTempEl = document.createElement("p");
+                                            var cardFiveWindEl = document.createElement("p");
+                                            var cardFiveHumidityEl = document.createElement("p");
+
+                                            var cardFiveDate = moment().add(5,'day').format('l');                      
+                                            var weatherIconCardFive = data.daily[4].weather[0].icon
+                                            var cardFiveWeatherIcon =  "https://openweathermap.org/img/wn/" + weatherIconCardFive + "@2x.png"
+                                            var cardFiveTemp = data.daily[4].feels_like.day
+                                            var cardFiveWind = data.daily[4].wind_speed
+                                            var cardFiveHumidity = data.daily[4].humidity
+
+                                            
+                                            cardFiveDateEl.textContent = cardFiveDate
+                                            cardFiveIconEl.src = cardFiveWeatherIcon
+                                            cardFiveTempEl.textContent = "Temp: " + cardFiveTemp
+                                            cardFiveWindEl.textContent = "Wind: " + cardFiveWind
+                                            cardFiveHumidityEl.textContent = "Humidity: " + cardFiveHumidity + "%"
+
+                                            forecastCardFiveEl.append(cardFiveDateEl);
+                                            forecastCardFiveEl.append(cardFiveIconEl);
+                                            forecastCardFiveEl.append(cardFiveTempEl);
+                                            forecastCardFiveEl.append(cardFiveWindEl);
+                                            forecastCardFiveEl.append(cardFiveHumidityEl)
+
 
 
                                             
@@ -164,6 +245,9 @@ var fiveDayForecast = function () {
 
 submitbutton.addEventListener("click", currentCityWeather);
 submitbutton.addEventListener("click", fiveDayForecast);
+
+
+
 
 
 
