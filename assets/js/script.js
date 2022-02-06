@@ -20,6 +20,7 @@ var currentCityWeather = function (enteredCity) {
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${enteredCity}&units=imperial&appid=27b3d2272a78678ccc982ddeb1ff31a9`).then(function (response) {
         response.json().then(function (data) {
             var cityNameEl = document.createElement("h2");
+            var currentTimeEl = document.createElement("p")
             var weatherMainEl = document.createElement("p");
             var mainTempEl = document.createElement("p");
             var humidityEl = document.createElement("p");
@@ -28,6 +29,7 @@ var currentCityWeather = function (enteredCity) {
             console.log(data)
 
             var cityName = data.name;
+            var currentdate = moment().format("l");
             var weatherIcon = data.weather[0].icon
             var iconLink = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`
             var weatherMain = data.weather[0].main
@@ -36,6 +38,7 @@ var currentCityWeather = function (enteredCity) {
             var windSpeed = data.wind.speed
 
             cityNameEl.textContent = cityName;
+            currentTimeEl.textContent = currentdate;
             weatherMainEl.textContent = "Current Weather Condition: " + weatherMain
             mainTempEl.textContent = "Current Temperture " + mainTemp + " F "
             humidityEl.textContent = "Humidity " + humidity + "%"
@@ -47,6 +50,7 @@ var currentCityWeather = function (enteredCity) {
             currentCityWeatherEl.innerHTML = ""
 
             currentCityWeatherEl.append(cityNameEl);
+            currentCityWeatherEl.append(currentTimeEl);
             currentCityWeatherEl.append(iconEl);
             currentCityWeatherEl.append(weatherMainEl);
             currentCityWeatherEl.append(mainTempEl);
@@ -275,6 +279,8 @@ var fiveDayForecast = function (enteredCity) {
 
 };
 
+// Saving into Local Storage
+
 var storedCity = function(event){
     var enteredCity = inputCity.value
     var newCityDivEl = document.createElement("button");
@@ -315,7 +321,7 @@ forecastCardThreeEl.style.display = "none";
 forecastCardFourEl.style.display = "none";
 forecastCardFiveEl.style.display = "none";
 
-
+//loading local Storage
 
 if(localStorage.getItem("searchedhistory") === null) { 
 
