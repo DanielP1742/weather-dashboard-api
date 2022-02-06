@@ -12,7 +12,10 @@ var savedCityDivEl = document.querySelector("#localStoreage")
 
 var currentCityWeather = function (enteredCity) {
    
+    event.preventDefault();
+
     //Inital population of data for Current City Weather
+    console.log(enteredCity)
 
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${enteredCity}&units=imperial&appid=27b3d2272a78678ccc982ddeb1ff31a9`).then(function (response) {
         response.json().then(function (data) {
@@ -61,6 +64,11 @@ var currentCityWeather = function (enteredCity) {
 
 
 var fiveDayForecast = function (enteredCity) {
+    console.log(enteredCity)
+    
+    event.preventDefault();
+
+
     fetch("http://api.openweathermap.org/data/2.5/weather?q=" + enteredCity + "&units=imperial&appid=27b3d2272a78678ccc982ddeb1ff31a9")
         .then(
             function (response) {
@@ -84,6 +92,9 @@ var fiveDayForecast = function (enteredCity) {
 
                                             // filling 5 day forecast Cards
 
+                                            forecastCardOneEl.style.display = "initial";
+
+
                                             var cardOneDateEl = document.createElement("p");
                                             var cardOneIconEl = document.createElement("img")
                                             var cardOneTempEl = document.createElement("p");
@@ -104,6 +115,9 @@ var fiveDayForecast = function (enteredCity) {
                                             cardOneWindEl.textContent = "Wind: " + cardOneWind
                                             cardOneHumidityEl.textContent = "Humidity: " + cardOneHumidity + "%"
 
+                                            forecastCardOneEl.innerHTML = "";
+
+
                                             forecastCardOneEl.append(cardOneDateEl);
                                             forecastCardOneEl.append(cardOneIconEl);
                                             forecastCardOneEl.append(cardOneTempEl);
@@ -111,6 +125,9 @@ var fiveDayForecast = function (enteredCity) {
                                             forecastCardOneEl.append(cardOneHumidityEl);
 
                                             // Card 2 
+
+                                            forecastCardTwoEl.style.display = "initial";
+
 
                                             var cardTwoDateEl = document.createElement("p");
                                             var cardTwoIconEl = document.createElement("img")
@@ -132,6 +149,8 @@ var fiveDayForecast = function (enteredCity) {
                                             cardTwoWindEl.textContent = "Wind: " + cardTwoWind
                                             cardTwoHumidityEl.textContent = "Humidity: " + cardTwoHumidity + "%"
 
+                                            forecastCardTwoEl.innerHTML = "";
+
                                             forecastCardTwoEl.append(cardTwoDateEl);
                                             forecastCardTwoEl.append(cardTwoIconEl);
                                             forecastCardTwoEl.append(cardTwoTempEl);
@@ -139,6 +158,9 @@ var fiveDayForecast = function (enteredCity) {
                                             forecastCardTwoEl.append(cardTwoHumidityEl)
 
                                             //Card 3 
+
+                                            forecastCardThreeEl.style.display = "initial";
+
 
                                             var cardThreeDateEl = document.createElement("p");
                                             var cardThreeIconEl = document.createElement("img")
@@ -160,6 +182,8 @@ var fiveDayForecast = function (enteredCity) {
                                             cardThreeWindEl.textContent = "Wind: " + cardThreeWind
                                             cardThreeHumidityEl.textContent = "Humidity: " + cardThreeHumidity + "%"
 
+                                            forecastCardThreeEl.innerHTML = "";
+
                                             forecastCardThreeEl.append(cardThreeDateEl);
                                             forecastCardThreeEl.append(cardThreeIconEl);
                                             forecastCardThreeEl.append(cardThreeTempEl);
@@ -167,6 +191,9 @@ var fiveDayForecast = function (enteredCity) {
                                             forecastCardThreeEl.append(cardThreeHumidityEl)
 
                                             //Card 4
+
+                                            forecastCardFourEl.style.display = "initial";
+
 
                                             var cardFourDateEl = document.createElement("p");
                                             var cardFourIconEl = document.createElement("img")
@@ -188,6 +215,8 @@ var fiveDayForecast = function (enteredCity) {
                                             cardFourWindEl.textContent = "Wind: " + cardFourWind
                                             cardFourHumidityEl.textContent = "Humidity: " + cardFourHumidity + "%"
 
+                                            forecastCardFourEl.innerHTML="";
+
                                             forecastCardFourEl.append(cardFourDateEl);
                                             forecastCardFourEl.append(cardFourIconEl);
                                             forecastCardFourEl.append(cardFourTempEl);
@@ -196,6 +225,9 @@ var fiveDayForecast = function (enteredCity) {
 
 
                                             // Card 5
+
+                                            forecastCardFiveEl.style.display = "initial";
+
 
                                             var cardFiveDateEl = document.createElement("p");
                                             var cardFiveIconEl = document.createElement("img")
@@ -216,6 +248,8 @@ var fiveDayForecast = function (enteredCity) {
                                             cardFiveTempEl.textContent = "Temp: " + cardFiveTemp
                                             cardFiveWindEl.textContent = "Wind: " + cardFiveWind
                                             cardFiveHumidityEl.textContent = "Humidity: " + cardFiveHumidity + "%"
+
+                                            forecastCardFiveEl.innerHTML = "";
 
                                             forecastCardFiveEl.append(cardFiveDateEl);
                                             forecastCardFiveEl.append(cardFiveIconEl);
@@ -265,6 +299,7 @@ var formsubmit = function(event) {
     currentCityWeather(enteredCity)
     fiveDayForecast(enteredCity)
     storedCity(event)
+    console.log("fiveDay/CurrentCity Functions")
 }
 var newCityformsubmit = function(event) {
     var enteredCity = this.textContent;
@@ -273,6 +308,12 @@ var newCityformsubmit = function(event) {
 }
 
 submitbutton.addEventListener("click", formsubmit);
+
+forecastCardOneEl.style.display = "none";
+forecastCardTwoEl.style.display = "none";
+forecastCardThreeEl.style.display = "none";
+forecastCardFourEl.style.display = "none";
+forecastCardFiveEl.style.display = "none";
 
 
 

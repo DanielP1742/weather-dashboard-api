@@ -46,3 +46,16 @@ input[type=submit] {
     background-color: lightgray;
 
 }
+
+.newCityCreated {
+    background-color: #577399;
+    color: white;
+    border: none;
+    padding: 3px;
+    margin: 2px 30px 2px 30px;
+    border-radius: 4px;
+
+
+
+
+}
